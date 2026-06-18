@@ -156,7 +156,8 @@
 					{#each ['Catering', 'Floral Decorations', 'AV & Lighting', 'Themed Styling', 'Photography', 'Videography', 'MC Services', 'Dance Floor', 'Photo Booth', 'Bar Service'] as svc}
 						<label class="checkbox-label">
 							<input type="checkbox" value={svc} />
-							<span>{svc.toUpperCase()}</span>
+							<span class="custom-check" aria-hidden="true"></span>
+							<span class="checkbox-text">{svc.toUpperCase()}</span>
 						</label>
 					{/each}
 				</div>
@@ -420,22 +421,69 @@
 	.checkbox-grid {
 		display: flex;
 		flex-wrap: wrap;
-		gap: 8px 24px;
+		gap: 12px 28px;
 		margin-top: 4px;
 	}
 	.checkbox-label {
+		position: relative;
 		display: flex;
 		align-items: center;
-		gap: 6px;
+		gap: 9px;
 		cursor: pointer;
+		min-height: 22px;
 	}
 	.checkbox-label input[type='checkbox'] {
-		width: 14px;
-		height: 14px;
-		accent-color: var(--gold);
-		cursor: pointer;
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		opacity: 0;
+		pointer-events: none;
 	}
-	.checkbox-label span {
+	.custom-check {
+		position: relative;
+		width: 16px;
+		height: 16px;
+		flex: 0 0 16px;
+		border: 1px solid rgba(42, 34, 24, 0.45);
+		background: rgba(245, 242, 234, 0.3);
+		transition:
+			background 0.25s ease,
+			border-color 0.25s ease,
+			box-shadow 0.25s ease;
+	}
+	.custom-check::after {
+		content: '';
+		position: absolute;
+		left: 4px;
+		top: 1px;
+		width: 5px;
+		height: 9px;
+		border-right: 1.5px solid #2a2218;
+		border-bottom: 1.5px solid #2a2218;
+		opacity: 0;
+		transform: rotate(40deg) scale(0.8);
+		transition:
+			opacity 0.2s ease,
+			transform 0.2s ease;
+	}
+	.checkbox-label input[type='checkbox']:checked + .custom-check {
+		border-color: var(--gold);
+		background: var(--gold);
+		box-shadow: 0 0 0 3px rgba(201, 163, 71, 0.14);
+	}
+	.checkbox-label input[type='checkbox']:checked + .custom-check::after {
+		opacity: 1;
+		transform: rotate(40deg) scale(1);
+	}
+	.checkbox-label input[type='checkbox']:focus-visible + .custom-check {
+		outline: 1px solid var(--gold);
+		outline-offset: 3px;
+	}
+	.checkbox-label:hover .custom-check {
+		border-color: var(--gold);
+		background: rgba(201, 163, 71, 0.12);
+	}
+	.checkbox-text {
 		font-family: var(--font-body);
 		font-size: 0.65rem;
 		font-weight: 400;

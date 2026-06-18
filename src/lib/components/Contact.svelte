@@ -9,7 +9,7 @@
 		</h2>
 		<p class="body-text contact-sub fade-up delay-1">
 			Ready to create something extraordinary? Our team is here to bring<br />
-			your vision to life — every detail, perfectly placed.
+			your vision to life - every detail, perfectly placed.
 		</p>
 		<div class="contact-btns fade-up delay-2">
 			<a href={contact.whatsappHref} target="_blank" rel="noopener noreferrer" class="btn-wa">
@@ -37,9 +37,9 @@
 	}
 	.contact-heading {
 		font-family: var(--font-heading);
-		font-size: clamp(4rem, 10vw, 8rem);
+		font-size: clamp(3.4rem, 8vw, 6.5rem);
 		font-weight: 300;
-		line-height: 0.95;
+		line-height: 1;
 		color: var(--off-white);
 		margin-bottom: 28px;
 	}
@@ -98,7 +98,7 @@
 			padding: 72px 20px 84px;
 		}
 		.contact-heading {
-			font-size: clamp(3.4rem, 18vw, 5.2rem);
+			font-size: clamp(3rem, 15vw, 4.6rem);
 		}
 		.contact-sub :global(br) {
 			display: none;

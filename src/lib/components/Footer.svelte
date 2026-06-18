@@ -6,7 +6,10 @@
 	<div class="footer-gold-line"></div>
 	<div class="footer-inner">
 		<div class="footer-col brand">
-			<p class="footer-logo">WHITE LACE & PROMISES</p>
+			<a href="/" class="footer-logo-mark" aria-label="White Lace & Promises home">
+				<img src="/imgs/logo-removebg.png" alt="" aria-hidden="true" />
+				<span>WHITE LACE & PROMISES</span>
+			</a>
 			<p class="footer-tagline">
 				Brisbane based wedding and event stylist, event planning, consulting, designer and
 				execution specialist for luxuriously themed and styled events.
@@ -53,13 +56,35 @@
 		margin: 0 auto;
 		padding: 64px 48px 48px;
 	}
-	.footer-logo {
+	.footer-logo-mark {
+		position: relative;
+		display: flex;
+		align-items: center;
+		gap: 16px;
+		width: fit-content;
+		margin-bottom: 20px;
+		padding-bottom: 18px;
+		border-bottom: 1px solid rgba(201, 163, 71, 0.34);
+		transition: border-color 0.3s ease;
+	}
+	.footer-logo-mark:hover {
+		border-color: rgba(201, 163, 71, 0.55);
+	}
+	.footer-logo-mark img {
+		width: 74px;
+		height: 58px;
+		object-fit: contain;
+		opacity: 0.48;
+		filter: invert(1) grayscale(1);
+	}
+	.footer-logo-mark span {
+		max-width: 220px;
 		font-family: var(--font-body);
-		font-size: 0.75rem;
+		font-size: 0.72rem;
 		font-weight: 400;
-		letter-spacing: 0.3em;
+		letter-spacing: 0.28em;
+		line-height: 1.8;
 		color: var(--gold);
-		margin-bottom: 12px;
 	}
 	.footer-tagline {
 		font-family: var(--font-body);
