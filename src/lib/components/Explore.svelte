@@ -40,6 +40,7 @@
 			Every Chapter of<br /><em>Your Celebration</em>
 		</h2>
 	</div>
+	<section class="feature-image fade-up delay-2" aria-label="Styled celebration table setting"></section>
 	<div class="cards">
 		{#each services as svc, i}
 			<a href={svc.href} class="card fade-up delay-{i + 1}">
@@ -65,7 +66,7 @@
 	.explore-header {
 		text-align: center;
 		max-width: 700px;
-		margin: 0 auto 48px;
+		margin: 0 auto 42px;
 	}
 	.explore-title {
 		font-family: var(--font-heading);
@@ -78,6 +79,22 @@
 	.explore-title em {
 		font-style: italic;
 		color: var(--gold);
+	}
+	.feature-image {
+		position: relative;
+		min-height: clamp(360px, 58vw, 720px);
+		margin: 0 calc(50% - 50vw) 64px;
+		background:
+			linear-gradient(to bottom, rgba(10, 10, 10, 0.1), rgba(10, 10, 10, 0.38)),
+			url('/imgs/once_in_life.jpg') center / cover no-repeat;
+	}
+	.feature-image::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		border-top: 1px solid rgba(201, 163, 71, 0.26);
+		border-bottom: 1px solid rgba(201, 163, 71, 0.26);
+		pointer-events: none;
 	}
 	.cards {
 		display: grid;
@@ -166,9 +183,16 @@
 
 	@media (max-width: 900px) {
 		.explore { padding: 60px 20px 0; }
+		.feature-image {
+			min-height: 420px;
+			margin-bottom: 44px;
+		}
 		.cards { grid-template-columns: repeat(2, 1fr); }
 	}
 	@media (max-width: 500px) {
+		.feature-image {
+			min-height: 360px;
+		}
 		.cards { grid-template-columns: 1fr; }
 	}
 </style>

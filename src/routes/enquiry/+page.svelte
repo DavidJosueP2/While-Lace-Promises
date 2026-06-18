@@ -233,7 +233,7 @@
 
 <style>
 	.enquiry-page {
-		background: #f1e7cf;
+		background: #f6eed8;
 		min-height: 100vh;
 	}
 
@@ -327,18 +327,16 @@
 		padding: 0 48px;
 	}
 	.card {
-		background: transparent;
-		padding: 28px 40px;
+		background: #e2cc98;
+		padding: 34px 40px;
 		display: flex;
 		flex-direction: column;
 		gap: 8px;
-		min-height: 132px;
+		min-height: 148px;
 		justify-content: center;
-		border-top: 1px solid rgba(201, 163, 71, 0.32);
-		border-bottom: 1px solid rgba(201, 163, 71, 0.18);
 	}
 	.card + .card {
-		border-left: 1px solid rgba(201, 163, 71, 0.2);
+		border-left: 1px solid rgba(245, 242, 234, 0.65);
 	}
 	.card-label {
 		font-family: var(--font-body);
@@ -374,9 +372,10 @@
 	.form-intro {
 		position: sticky;
 		top: 110px;
-		padding: 36px 0 32px;
-		border-top: 1px solid rgba(201, 163, 71, 0.46);
-		border-bottom: 1px solid rgba(201, 163, 71, 0.2);
+		padding: 34px 8px 32px 0;
+		background: transparent;
+		border-top: 1px solid rgba(201, 163, 71, 0.42);
+		border-bottom: 1px solid rgba(201, 163, 71, 0.22);
 	}
 	.form-eyebrow,
 	.form-panel legend,
@@ -421,13 +420,13 @@
 	}
 	.form-fields {
 		display: grid;
-		gap: 0;
+		gap: 16px;
 	}
 	.form-panel {
-		border: 0;
-		border-top: 1px solid rgba(201, 163, 71, 0.24);
-		background: transparent;
-		padding: 32px 0 36px;
+		border: 1px solid rgba(201, 163, 71, 0.28);
+		background: #ead8ad;
+		padding: 30px;
+		box-shadow: 0 18px 34px rgba(87, 69, 35, 0.045);
 	}
 	.form-panel legend {
 		float: left;
@@ -478,10 +477,10 @@
 		font-size: 1.06rem;
 		font-weight: 400;
 		color: #2a2218;
-		background: rgba(245, 242, 234, 0.26);
+		background: rgba(249, 241, 222, 0.78);
 		border: 0;
-		border-bottom: 1px solid rgba(101, 88, 64, 0.24);
-		padding: 14px 0 13px;
+		border-bottom: 1px solid rgba(101, 88, 64, 0.28);
+		padding: 14px 15px 13px;
 		outline: none;
 		transition:
 			border-color 0.28s ease,
@@ -499,7 +498,7 @@
 	.form-group input:focus,
 	.form-group select:focus,
 	.form-group textarea:focus {
-		background: rgba(245, 242, 234, 0.38);
+		background: rgba(255, 248, 232, 0.96);
 		border-color: rgba(201, 163, 71, 0.72);
 		box-shadow: 0 8px 0 -7px rgba(201, 163, 71, 0.35);
 	}
@@ -522,10 +521,10 @@
 		display: flex;
 		align-items: center;
 		gap: 10px;
-		min-height: 38px;
-		padding: 8px 0 10px;
+		min-height: 42px;
+		padding: 10px 12px;
 		cursor: pointer;
-		background: transparent;
+		background: rgba(249, 241, 222, 0.46);
 		border-bottom: 1px solid rgba(101, 88, 64, 0.14);
 		transition:
 			border-color 0.25s ease,
@@ -533,6 +532,7 @@
 	}
 	.checkbox-label:hover {
 		border-color: rgba(201, 163, 71, 0.62);
+		background: rgba(255, 248, 232, 0.72);
 		color: #2a2218;
 	}
 	.checkbox-label input[type='checkbox'] {
@@ -661,7 +661,7 @@
 			padding: 20px 20px 48px;
 		}
 		.form-panel {
-			padding: 26px 0 30px;
+			padding: 24px 20px;
 		}
 		.form-row,
 		.checkbox-grid {
