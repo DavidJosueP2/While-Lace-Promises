@@ -4,12 +4,11 @@
 
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import gsap from 'gsap';
 
 	let container = $state<HTMLDivElement>();
 	let done = $state(hasPlayedThisAppLoad);
 
-	onMount(() => {
+	onMount(async () => {
 		if (hasPlayedThisAppLoad) {
 			done = true;
 			(window as Window & { __wlpEntrancePlayed?: boolean }).__wlpEntrancePlayed = true;
@@ -18,6 +17,10 @@
 		}
 
 		if (!container) return;
+
+		const gsapModule = await import('gsap');
+		const gsapAny = gsapModule as any;
+		const gsap = gsapAny.gsap ?? gsapAny.default;
 
 		const tl = gsap.timeline({
 			onComplete: () => {

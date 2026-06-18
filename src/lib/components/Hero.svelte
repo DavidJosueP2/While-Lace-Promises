@@ -1,157 +1,169 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import gsap from 'gsap';
-	import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-	gsap.registerPlugin(ScrollTrigger);
 
 	let heroEl: HTMLElement;
 	let videoEl: HTMLVideoElement;
 
 	onMount(() => {
-		const entranceDone = sessionStorage.getItem('wlp_entered');
-		const startDelay = entranceDone ? 0.2 : 0;
+		let ctx: { revert: () => void } | undefined;
+		let disposed = false;
 
-		// Wait for entrance to complete if it hasn't already
-		const initAnimations = () => {
-			const tl = gsap.timeline({ delay: startDelay });
+		const loadAnimations = async () => {
+			const gsapModule = await import('gsap');
+			const scrollTriggerModule = await import('gsap/ScrollTrigger');
+			const gsapAny = gsapModule as any;
+			const scrollTriggerAny = scrollTriggerModule as any;
+			const gsap = gsapAny.gsap ?? gsapAny.default;
+			const ScrollTrigger =
+				scrollTriggerAny.ScrollTrigger ??
+				scrollTriggerAny.default?.ScrollTrigger ??
+				scrollTriggerAny.default;
 
-			// Video clip-path reveal from center — faster
-			tl.fromTo(videoEl,
-				{ clipPath: 'inset(40% 40% 40% 40%)' },
-				{ clipPath: 'inset(0% 0% 0% 0%)', duration: 1.0, ease: 'power3.inOut' }
-			);
+			if (disposed || !heroEl || !videoEl) return;
 
-			// Overlay appears
-			tl.from('.hero-overlay', {
-				opacity: 0,
-				duration: 0.6,
-				ease: 'power2.out'
-			}, '-=0.8');
+			gsap.registerPlugin(ScrollTrigger);
 
-			// Brand logo
-			tl.from('.hero-brand', {
-				opacity: 0,
-				scale: 0.6,
-				filter: 'blur(10px)',
-				duration: 0.7,
-				ease: 'power3.out'
-			}, '-=0.4');
+			ctx = gsap.context(() => {
+				const kickerChars = heroEl.querySelectorAll('.hero-kicker .kicker-char');
+				const titleWords = heroEl.querySelectorAll('.hero-title .word-wrap');
+				const btns = heroEl.querySelectorAll('.hero-btns a');
 
-			// Kicker text — letter by letter
-			const kickerChars = heroEl.querySelectorAll('.hero-kicker .kicker-char');
-			tl.from(kickerChars, {
-				opacity: 0,
-				y: 12,
-				duration: 0.3,
-				ease: 'power3.out',
-				stagger: 0.018
-			}, '-=0.4');
+				const intro = gsap.timeline({
+					defaults: { overwrite: 'auto' },
+					onComplete: () => {
+						gsap.set(btns, { opacity: 1, y: 0, rotateX: 0, pointerEvents: 'auto' });
+					}
+				});
 
-			// Title — word by word reveal with clip-path
-			const titleWords = heroEl.querySelectorAll('.hero-title .word-wrap');
-			tl.from(titleWords, {
-				y: '100%',
-				duration: 0.7,
-				ease: 'power4.out',
-				stagger: 0.06
-			}, '-=0.3');
+				intro.fromTo(
+					videoEl,
+					{ clipPath: 'inset(40% 40% 40% 40%)' },
+					{ clipPath: 'inset(0% 0% 0% 0%)', duration: 1, ease: 'power3.inOut' }
+				);
 
-			// Gold italic emphasis — shimmer
-			tl.from('.hero-title em', {
-				color: 'rgba(245, 245, 240, 1)',
-				textShadow: '0 0 0px transparent',
-				duration: 0.5,
-				ease: 'power2.out'
-			}, '-=0.3');
+				intro.fromTo(
+					'.hero-overlay',
+					{ opacity: 0 },
+					{ opacity: 1, duration: 0.6, ease: 'power2.out' },
+					'-=0.8'
+				);
 
-			tl.to('.hero-title em', {
-				textShadow: '0 0 20px rgba(201, 163, 71, 0.3)',
-				duration: 0.7,
-				ease: 'power2.inOut',
-				yoyo: true,
-				repeat: 1
-			}, '-=0.2');
+				intro.fromTo(
+					'.hero-brand',
+					{ opacity: 0, scale: 0.6, filter: 'blur(10px)' },
+					{ opacity: 1, scale: 1, filter: 'blur(0px)', duration: 0.7, ease: 'power3.out' },
+					'-=0.4'
+				);
 
-			// Golden rule line expands from center
-			tl.from('.hero-rule', {
-				scaleX: 0,
-				duration: 0.6,
-				ease: 'power3.inOut'
-			}, '-=1.0');
+				intro.fromTo(
+					kickerChars,
+					{ opacity: 0, y: 12 },
+					{ opacity: 1, y: 0, duration: 0.3, ease: 'power3.out', stagger: 0.018 },
+					'-=0.4'
+				);
 
-			// Subtitle
-			tl.from('.hero-sub', {
-				opacity: 0,
-				y: 20,
-				filter: 'blur(4px)',
-				duration: 0.6,
-				ease: 'power3.out'
-			}, '-=0.5');
+				intro.fromTo(
+					titleWords,
+					{ y: '100%' },
+					{ y: '0%', duration: 0.7, ease: 'power4.out', stagger: 0.06 },
+					'-=0.3'
+				);
 
-			// Buttons with stagger and slight 3D rotation
-			const btns = heroEl.querySelectorAll('.hero-btns a');
-			tl.from(btns, {
-				opacity: 0,
-				y: 25,
-				rotateX: 12,
-				duration: 0.5,
-				ease: 'power3.out',
-				stagger: 0.08
-			}, '-=0.3');
+				intro.fromTo(
+					'.hero-title em',
+					{ textShadow: '0 0 0px transparent' },
+					{
+						textShadow: '0 0 20px rgba(201, 163, 71, 0.3)',
+						duration: 0.7,
+						ease: 'power2.inOut',
+						yoyo: true,
+						repeat: 1
+					},
+					'-=0.2'
+				);
 
-			// Watermark text
-			tl.from('.hero-watermark', {
-				opacity: 0,
-				x: 40,
-				duration: 0.9,
-				ease: 'power2.out'
-			}, '-=0.7');
+				intro.fromTo(
+					'.hero-rule',
+					{ scaleX: 0 },
+					{ scaleX: 1, duration: 0.6, ease: 'power3.inOut' },
+					'-=1.0'
+				);
+
+				intro.fromTo(
+					'.hero-sub',
+					{ opacity: 0, y: 20, filter: 'blur(4px)' },
+					{ opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.6, ease: 'power3.out' },
+					'-=0.5'
+				);
+
+				intro.fromTo(
+					btns,
+					{ opacity: 0, y: 25, rotateX: 12 },
+					{
+						opacity: 1,
+						y: 0,
+						rotateX: 0,
+						duration: 0.5,
+						ease: 'power3.out',
+						stagger: 0.08,
+						pointerEvents: 'auto'
+					},
+					'-=0.3'
+				);
+
+				intro.fromTo(
+					'.hero-watermark',
+					{ opacity: 0 },
+					{ opacity: 1, duration: 0.9, ease: 'power2.out' },
+					'-=0.7'
+				);
+
+				// === SCROLL-BASED PARALLAX ===
+				// Video moves slower than content (parallax)
+				gsap.to(videoEl, {
+					y: '20%',
+					ease: 'none',
+					scrollTrigger: {
+						trigger: heroEl,
+						start: 'top top',
+						end: 'bottom top',
+						scrub: true
+					}
+				});
+
+				// Watermark parallax (moves opposite)
+				gsap.to('.hero-watermark', {
+					y: '-30%',
+					ease: 'none',
+					scrollTrigger: {
+						trigger: heroEl,
+						start: 'top top',
+						end: 'bottom top',
+						scrub: true
+					}
+				});
+
+				// Content fades out on scroll
+				gsap.to('.hero-content', {
+					opacity: 0,
+					y: -60,
+					ease: 'none',
+					scrollTrigger: {
+						trigger: heroEl,
+						start: '60% top',
+						end: 'bottom top',
+						scrub: true
+					}
+				});
+			}, heroEl);
 		};
 
-		if (entranceDone) {
-			initAnimations();
-		} else {
-			window.addEventListener('entrance-complete', () => initAnimations(), { once: true });
-		}
+		void loadAnimations();
 
-		// === SCROLL-BASED PARALLAX ===
-		// Video moves slower than content (parallax)
-		gsap.to(videoEl, {
-			y: '20%',
-			ease: 'none',
-			scrollTrigger: {
-				trigger: heroEl,
-				start: 'top top',
-				end: 'bottom top',
-				scrub: true
-			}
-		});
-
-		// Watermark parallax (moves opposite)
-		gsap.to('.hero-watermark', {
-			y: '-30%',
-			ease: 'none',
-			scrollTrigger: {
-				trigger: heroEl,
-				start: 'top top',
-				end: 'bottom top',
-				scrub: true
-			}
-		});
-
-		// Content fades out on scroll
-		gsap.to('.hero-content', {
-			opacity: 0,
-			y: -60,
-			ease: 'none',
-			scrollTrigger: {
-				trigger: heroEl,
-				start: '60% top',
-				end: 'bottom top',
-				scrub: true
-			}
-		});
+		return () => {
+			disposed = true;
+			ctx?.revert();
+		};
 	});
 </script>
 
@@ -339,6 +351,12 @@
 		margin-top: 30px;
 		flex-wrap: wrap;
 		perspective: 600px;
+	}
+	.hero-btns a {
+		opacity: 0;
+		transform: translateY(25px) rotateX(12deg);
+		pointer-events: none;
+		will-change: transform, opacity;
 	}
 	.btn-gold,
 	.btn-outline {
