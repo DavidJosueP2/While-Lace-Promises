@@ -1,7 +1,5 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import gsap from 'gsap';
-	import { ScrollTrigger } from 'gsap/ScrollTrigger';
 	import Nav from '$lib/components/Nav.svelte';
 	import Hero from '$lib/components/Hero.svelte';
 	import About from '$lib/components/About.svelte';
@@ -13,11 +11,21 @@
 	import AmbientMusic from '$lib/components/AmbientMusic.svelte';
 	import GrandEntrance from '$lib/components/GrandEntrance.svelte';
 
-	gsap.registerPlugin(ScrollTrigger);
-
 	let scrollY = $state(0);
 
-	onMount(() => {
+	onMount(async () => {
+		const gsapModule = await import('gsap');
+		const scrollTriggerModule = await import('gsap/ScrollTrigger');
+		const gsapAny = gsapModule as any;
+		const scrollTriggerAny = scrollTriggerModule as any;
+		const gsap = gsapAny.gsap ?? gsapAny.default;
+		const ScrollTrigger =
+			scrollTriggerAny.ScrollTrigger ??
+			scrollTriggerAny.default?.ScrollTrigger ??
+			scrollTriggerAny.default;
+
+		gsap.registerPlugin(ScrollTrigger);
+
 		// === GSAP ScrollTrigger for all .fade-up elements ===
 		const fadeUpElements = document.querySelectorAll('.fade-up');
 		fadeUpElements.forEach((el) => {
