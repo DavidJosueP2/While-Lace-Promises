@@ -1,0 +1,202 @@
+@import 'tailwindcss';
+@plugin '@tailwindcss/forms';
+
+/* ===========================
+   FONT FACES
+   =========================== */
+
+@font-face {
+  font-family: 'Cormorant Garamond';
+  src: url('/fonts/Cormorant_Garamond/CormorantGaramond-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Cormorant Garamond';
+  src: url('/fonts/Cormorant_Garamond/CormorantGaramond-Italic-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  src: url('/fonts/Montserrat/Montserrat-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  src: url('/fonts/Montserrat/Montserrat-Italic-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* ===========================
+   DESIGN TOKENS
+   =========================== */
+
+:root {
+  --gold: #c9a347;
+  --gold-hover: #d4b35c;
+  --black: #0a0a0a;
+  --dark: #1a1a1a;
+  --dark-card: #141414;
+  --dark-surface: #111111;
+  --grey: #999999;
+  --light-grey: #cccccc;
+  --off-white: #f5f5f0;
+  --font-heading: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --font-body: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* ===========================
+   GLOBAL RESETS & BASE
+   =========================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--black);
+  color: var(--off-white);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ===========================
+   SELECTION
+   =========================== */
+
+::selection {
+  background: var(--gold);
+  color: var(--black);
+}
+
+/* ===========================
+   SCROLLBAR (webkit)
+   =========================== */
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--black);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--gold);
+  border-radius: 3px;
+}
+
+/* ===========================
+   ORNAMENT DIVIDER
+   =========================== */
+
+.ornament {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 48px 0;
+}
+
+.orn-line {
+  width: 72px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold));
+}
+
+.orn-line.r {
+  background: linear-gradient(to left, transparent, var(--gold));
+}
+
+.orn-dot {
+  width: 5px;
+  height: 5px;
+  background: var(--gold);
+  transform: rotate(45deg);
+  flex-shrink: 0;
+}
+
+/* ===========================
+   SCROLL FADE-UP ANIMATION
+   =========================== */
+
+.fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.9s cubic-bezier(0.23, 1, 0.32, 1),
+              transform 0.9s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-up.delay-1 { transition-delay: 0.1s; }
+.fade-up.delay-2 { transition-delay: 0.2s; }
+.fade-up.delay-3 { transition-delay: 0.3s; }
+.fade-up.delay-4 { transition-delay: 0.4s; }
+.fade-up.delay-5 { transition-delay: 0.5s; }
+
+/* ===========================
+   TYPOGRAPHY HELPERS
+   =========================== */
+
+.section-label {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.heading-xl {
+  font-family: var(--font-heading);
+  font-weight: 300;
+  line-height: 1.15;
+}
+
+.heading-xl em {
+  font-style: italic;
+  color: var(--gold);
+}
+
+.body-text {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 300;
+  line-height: 1.8;
+  color: var(--light-grey);
+}
