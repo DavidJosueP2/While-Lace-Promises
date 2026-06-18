@@ -24,11 +24,6 @@
 				<a href="/gallery" class="btn-outline">VIEW GALLERY</a>
 			</div>
 		</div>
-		<div class="hero-details fade-up delay-3" aria-label="White Lace and Promises services">
-			<span>Weddings</span>
-			<span>Event Styling</span>
-			<span>Celebrations</span>
-		</div>
 	</div>
 </section>
 
@@ -36,7 +31,7 @@
 	.hero {
 		position: relative;
 		width: 100%;
-		height: 100vh;
+		height: 96vh;
 		min-height: 600px;
 		overflow: hidden;
 	}
@@ -46,26 +41,27 @@
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
-		filter: grayscale(100%) brightness(0.78) contrast(1.02);
+		filter: grayscale(100%) brightness(0.86) contrast(0.96);
 	}
 	.hero-overlay {
 		position: absolute;
 		inset: 0;
 		background:
-			linear-gradient(to right, rgba(10, 10, 10, 0.78) 0%, rgba(10, 10, 10, 0.42) 42%, rgba(10, 10, 10, 0.14) 100%),
-			linear-gradient(to top, rgba(10, 10, 10, 0.78) 0%, rgba(10, 10, 10, 0.14) 50%, rgba(10, 10, 10, 0.25) 100%);
+			linear-gradient(to bottom, rgba(10, 10, 10, 0.5) 0%, rgba(10, 10, 10, 0.24) 42%, rgba(10, 10, 10, 0.64) 100%),
+			radial-gradient(circle at center, rgba(10, 10, 10, 0.08) 0%, rgba(10, 10, 10, 0.52) 74%);
 	}
 	.hero-watermark {
 		position: absolute;
-		right: -0.12em;
+		left: 50%;
 		bottom: 5vh;
 		z-index: 1;
 		font-family: var(--font-heading);
-		font-size: clamp(5rem, 14vw, 13rem);
+		font-size: clamp(5rem, 13vw, 12rem);
 		font-weight: 300;
 		line-height: 0.8;
 		letter-spacing: 0.04em;
-		color: rgba(245, 245, 240, 0.028);
+		color: rgba(245, 245, 240, 0.072);
+		transform: translateX(-50%);
 		pointer-events: none;
 		white-space: nowrap;
 	}
@@ -74,31 +70,34 @@
 		z-index: 2;
 		display: flex;
 		flex-direction: column;
-		justify-content: flex-end;
+		align-items: center;
+		justify-content: center;
 		width: 100%;
 		height: 100%;
 		max-width: 1400px;
 		margin: 0 auto;
-		padding: 140px 64px 44px;
+		padding: 132px 48px 58px;
 	}
 	.hero-content {
-		max-width: 650px;
+		max-width: 760px;
+		text-align: center;
 	}
 	.hero-brand {
-		width: 112px;
-		height: 64px;
+		width: 96px;
+		height: 54px;
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		margin-bottom: 18px;
-		opacity: 0.82;
+		margin: 0 auto 22px;
+		opacity: 1;
 		pointer-events: none;
 	}
 	.hero-brand img {
 		width: 100%;
 		height: 100%;
 		object-fit: contain;
-		filter: invert(1) grayscale(1) contrast(1.08) drop-shadow(0 10px 28px rgba(0, 0, 0, 0.42));
+		filter: invert(1) grayscale(1) brightness(1.35) contrast(1.18)
+			drop-shadow(0 10px 26px rgba(0, 0, 0, 0.54));
 	}
 	.hero-kicker {
 		font-family: var(--font-body);
@@ -109,9 +108,9 @@
 	}
 	.hero-title {
 		font-family: var(--font-heading);
-		font-size: clamp(3rem, 5.3vw, 4.85rem);
+		font-size: clamp(3rem, 5.8vw, 5.45rem);
 		font-weight: 300;
-		line-height: 1.04;
+		line-height: 1.02;
 		color: var(--off-white);
 		margin-top: 16px;
 	}
@@ -120,10 +119,10 @@
 		color: var(--gold);
 	}
 	.hero-rule {
-		width: min(34vw, 300px);
+		width: min(24vw, 220px);
 		height: 1px;
-		margin: 20px 0 20px;
-		background: linear-gradient(to right, var(--gold), rgba(201, 163, 71, 0.1), transparent);
+		margin: 24px auto 22px;
+		background: linear-gradient(to right, transparent, var(--gold), transparent);
 	}
 	.hero-sub {
 		font-family: var(--font-body);
@@ -131,41 +130,15 @@
 		font-weight: 300;
 		line-height: 1.8;
 		color: var(--light-grey);
-		max-width: 560px;
+		max-width: 590px;
+		margin: 0 auto;
 	}
 	.hero-btns {
 		display: flex;
+		justify-content: center;
 		gap: 16px;
-		margin-top: 24px;
+		margin-top: 30px;
 		flex-wrap: wrap;
-	}
-	.hero-details {
-		display: flex;
-		align-items: center;
-		gap: 18px;
-		margin-top: 34px;
-		padding-top: 16px;
-		border-top: 1px solid rgba(245, 245, 240, 0.1);
-		font-family: var(--font-body);
-		font-size: 0.62rem;
-		font-weight: 500;
-		letter-spacing: 0.24em;
-		text-transform: uppercase;
-		color: rgba(245, 245, 240, 0.58);
-	}
-	.hero-details span + span {
-		position: relative;
-		padding-left: 18px;
-	}
-	.hero-details span + span::before {
-		content: '';
-		position: absolute;
-		left: 0;
-		top: 50%;
-		width: 4px;
-		height: 4px;
-		background: var(--gold);
-		transform: translateY(-50%) rotate(45deg);
 	}
 	.btn-gold,
 	.btn-outline {
@@ -199,51 +172,39 @@
 
 	@media (max-width: 768px) {
 		.hero {
-			min-height: 680px;
+			height: 94vh;
+			min-height: 620px;
 		}
 		.hero-inner {
-			padding: 122px 22px 36px;
+			padding: 112px 22px 42px;
 		}
 		.hero-watermark {
-			right: -0.25em;
-			bottom: 18vh;
-			font-size: clamp(5rem, 22vw, 8rem);
+			bottom: 11vh;
+			font-size: clamp(4.2rem, 20vw, 7rem);
 		}
 		.hero-title {
-			font-size: clamp(2.75rem, 12vw, 4rem);
+			font-size: clamp(2.7rem, 12vw, 4.2rem);
 		}
 		.hero-brand {
-			width: 96px;
-			height: 56px;
-			margin-bottom: 14px;
+			width: 88px;
+			height: 50px;
+			margin-bottom: 18px;
 		}
 		.hero-rule {
-			width: 82%;
-			margin: 24px 0 22px;
+			width: 72%;
+			margin: 24px auto 22px;
 		}
 		.hero-sub br {
 			display: none;
 		}
 		.hero-btns {
 			flex-direction: column;
-			align-items: flex-start;
+			align-items: center;
 		}
 		.btn-gold,
 		.btn-outline {
 			width: 220px;
 			text-align: center;
-		}
-		.hero-details {
-			align-items: flex-start;
-			flex-direction: column;
-			gap: 10px;
-			margin-top: 38px;
-		}
-		.hero-details span + span {
-			padding-left: 0;
-		}
-		.hero-details span + span::before {
-			display: none;
 		}
 	}
 </style>
