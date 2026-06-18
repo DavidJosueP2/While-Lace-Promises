@@ -15,7 +15,7 @@
 		<Ornament />
 		<p class="hero-sub fade-up delay-2">
 			Step into a world of elegance, charm, and unforgettable moments.<br />
-			White Lace & Promises brings Australian celebrations to life with styling, planning and detail-rich
+			White Lace & Promises brings celebrations to life with styling, planning and detail-rich
 			design.
 		</p>
 		<div class="hero-btns fade-up delay-3">
@@ -63,9 +63,9 @@
 	}
 	.hero-title {
 		font-family: var(--font-heading);
-		font-size: clamp(2.8rem, 7vw, 5.5rem);
+		font-size: clamp(3.4rem, 8vw, 6.5rem);
 		font-weight: 300;
-		line-height: 1.1;
+		line-height: 1;
 		color: var(--off-white);
 		margin-top: 16px;
 	}
@@ -120,6 +120,9 @@
 	}
 
 	@media (max-width: 768px) {
+		.hero-title {
+			font-size: clamp(3rem, 15vw, 4.6rem);
+		}
 		.hero-sub br {
 			display: none;
 		}

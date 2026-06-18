@@ -1,6 +1,4 @@
 <script lang="ts">
-	import Ornament from '$lib/components/Ornament.svelte';
-
 	const images = [
 		'/imgs/619567145_18100573348880661_4118419258896769483_n.jpg',
 		'/imgs/621728882_18099922351846218_5043613633722157739_n.jpg',
@@ -15,17 +13,6 @@
 	];
 
 	const carouselImages = [...images, ...images];
-	let galleryScroll: HTMLDivElement | undefined = $state();
-
-	function loopScroll() {
-		if (!galleryScroll) return;
-		const firstDuplicate = galleryScroll.querySelector<HTMLElement>(`[data-index="${images.length}"]`);
-		const resetAt = firstDuplicate?.offsetLeft ?? 0;
-
-		if (resetAt > 0 && galleryScroll.scrollLeft >= resetAt) {
-			galleryScroll.scrollLeft -= resetAt;
-		}
-	}
 </script>
 
 <section id="gallery" class="gallery">
@@ -40,8 +27,6 @@
 	<div
 		class="gallery-scroll fade-up delay-2"
 		aria-label="White Lace & Promises gallery preview"
-		bind:this={galleryScroll}
-		onscroll={loopScroll}
 	>
 		<div class="gallery-track">
 			{#each carouselImages as src, i}
@@ -55,7 +40,6 @@
 			{/each}
 		</div>
 	</div>
-	<Ornament />
 </section>
 
 <style>
@@ -101,9 +85,8 @@
 		color: var(--black);
 	}
 	.gallery-scroll {
-		overflow-x: auto;
+		overflow: hidden;
 		padding: 0 48px 8px;
-		scroll-snap-type: x mandatory;
 		-ms-overflow-style: none;
 		scrollbar-width: none;
 	}
@@ -114,13 +97,16 @@
 		display: flex;
 		gap: 12px;
 		width: max-content;
+		animation: gallery-loop 78s linear infinite;
+	}
+	.gallery-scroll:hover .gallery-track {
+		animation-play-state: paused;
 	}
 	.gallery-item {
 		flex: 0 0 auto;
 		width: 280px;
 		height: 360px;
 		overflow: hidden;
-		scroll-snap-align: start;
 	}
 	.gallery-item.tall {
 		height: 420px;
@@ -133,6 +119,14 @@
 	}
 	.gallery-item:hover img {
 		transform: scale(1.05);
+	}
+	@keyframes gallery-loop {
+		from {
+			transform: translateX(0);
+		}
+		to {
+			transform: translateX(calc(-50% - 6px));
+		}
 	}
 	@media (max-width: 768px) {
 		.gallery-header {

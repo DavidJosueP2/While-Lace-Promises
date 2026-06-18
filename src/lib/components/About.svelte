@@ -1,8 +1,4 @@
 
-<script lang="ts">
-	import { contact } from '$lib/contact';
-</script>
-
 <section id="about" class="about">
 	<div class="about-inner">
 		<div class="about-side">
@@ -14,11 +10,12 @@
 				More than styling —<br />it's where <em>memories</em><br />last a lifetime
 			</h2>
 			<p class="body-text fade-up delay-2">
-				Brisbane based wedding and event stylist, event planning, consulting, designer and
-				execution specialist for luxuriously themed and styled events.
+				Brisbane Based Wedding and Event Stylist, event planning, consulting, designer and
+				execution specialist. For luxuriously themed & styled events.
 			</p>
-			<p class="about-location fade-up delay-3">
-				{contact.addressFull}
+			<p class="body-text fade-up delay-3">
+				What began as a love for beautiful details has grown into a passion for creating
+				celebrations that feel heartfelt, welcoming, and truly memorable.
 			</p>
 			<a href="#contact" class="story-link fade-up delay-4">
 				OUR STORY <span class="arrow">⟶</span>
@@ -75,16 +72,6 @@
 	.about-heading em {
 		font-style: italic;
 		color: var(--gold);
-	}
-	.about-location {
-		font-family: var(--font-body);
-		font-size: 0.72rem;
-		font-weight: 400;
-		letter-spacing: 0.12em;
-		line-height: 1.8;
-		text-transform: uppercase;
-		color: var(--gold);
-		max-width: 520px;
 	}
 	.story-link {
 		font-family: var(--font-body);
