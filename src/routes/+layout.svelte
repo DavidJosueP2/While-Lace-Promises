@@ -1,6 +1,7 @@
 <script lang="ts">
 	import './layout.css';
 	import favicon from '$lib/assets/favicon.svg';
+	import CustomCursor from '$lib/components/CustomCursor.svelte';
 
 	let { children } = $props();
 </script>
@@ -20,5 +21,7 @@
 	<meta property="og:type" content="website" />
 	<meta name="theme-color" content="#0a0a0a" />
 </svelte:head>
+
+<CustomCursor />
 
 {@render children()}

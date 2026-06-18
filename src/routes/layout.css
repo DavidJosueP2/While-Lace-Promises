@@ -44,6 +44,21 @@
 :root {
   --gold: #c9a347;
   --gold-hover: #d4b35c;
+  --gold-breeze: linear-gradient(
+    110deg,
+    #b78f35 0%,
+    #c9a347 10%,
+    #d8b95f 19%,
+    #f0d98e 27%,
+    #d6ad4d 36%,
+    #bd9438 50%,
+    #b78f35 50%,
+    #c9a347 60%,
+    #d8b95f 69%,
+    #f0d98e 77%,
+    #d6ad4d 86%,
+    #bd9438 100%
+  );
   --black: #0a0a0a;
   --dark: #1a1a1a;
   --dark-card: #141414;
@@ -149,25 +164,33 @@ a {
 
 /* ===========================
    SCROLL FADE-UP ANIMATION
+   GSAP controls these — CSS is fallback only
    =========================== */
 
 .fade-up {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.9s cubic-bezier(0.23, 1, 0.32, 1),
-              transform 0.9s cubic-bezier(0.23, 1, 0.32, 1);
+  /* GSAP sets initial opacity/transform via JS.
+     This is the no-JS fallback. */
+  will-change: transform, opacity;
 }
 
-.fade-up.visible {
-  opacity: 1;
-  transform: translateY(0);
+/* Legacy fallback for non-JS browsers */
+@media (scripting: none) {
+  .fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.9s cubic-bezier(0.23, 1, 0.32, 1),
+                transform 0.9s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .fade-up.delay-1 { transition-delay: 0.1s; }
+  .fade-up.delay-2 { transition-delay: 0.2s; }
+  .fade-up.delay-3 { transition-delay: 0.3s; }
+  .fade-up.delay-4 { transition-delay: 0.4s; }
+  .fade-up.delay-5 { transition-delay: 0.5s; }
 }
-
-.fade-up.delay-1 { transition-delay: 0.1s; }
-.fade-up.delay-2 { transition-delay: 0.2s; }
-.fade-up.delay-3 { transition-delay: 0.3s; }
-.fade-up.delay-4 { transition-delay: 0.4s; }
-.fade-up.delay-5 { transition-delay: 0.5s; }
 
 /* ===========================
    TYPOGRAPHY HELPERS
@@ -191,6 +214,82 @@ a {
 .heading-xl em {
   font-style: italic;
   color: var(--gold);
+}
+
+/* ===========================
+   GOLD TEXT BREEZE
+   =========================== */
+
+:where(
+  .section-label,
+  .heading-xl em,
+  h1 em,
+  h2 em,
+  h3 em,
+  .hero-kicker,
+  .hero-title em,
+  .nav-logo span,
+  .gallery-heading em,
+  .gallery-btn,
+  .card-label,
+  .card-arrow,
+  .card-num,
+  .form-eyebrow,
+  .form-panel legend span,
+  .form-group label,
+  .enq-title em,
+  .footer-title,
+  .footer-heading
+) {
+  background-image: var(--gold-breeze);
+  background-size: 320% 100%;
+  background-position: 0% center;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: var(--gold);
+  -webkit-text-fill-color: transparent;
+  animation: gold-breeze 9s linear infinite;
+  text-shadow:
+    0 0 10px rgba(201, 163, 71, 0.16),
+    0 0 24px rgba(201, 163, 71, 0.08);
+}
+
+@keyframes gold-breeze {
+  0% {
+    background-position: 0% center;
+    filter: brightness(1.04) saturate(1.05);
+  }
+  100% {
+    background-position: 160% center;
+    filter: brightness(1.04) saturate(1.05);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :where(
+    .section-label,
+    .heading-xl em,
+    h1 em,
+    h2 em,
+    h3 em,
+    .hero-kicker,
+    .hero-title em,
+    .nav-logo span,
+    .gallery-heading em,
+    .gallery-btn,
+    .card-label,
+    .card-arrow,
+    .card-num,
+    .form-eyebrow,
+    .form-panel legend span,
+    .form-group label,
+    .enq-title em,
+    .footer-title,
+    .footer-heading
+  ) {
+    animation: none;
+    filter: none;
+  }
 }
 
 .body-text {

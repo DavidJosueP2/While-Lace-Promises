@@ -19,14 +19,14 @@
 		{
 			num: '03',
 			title: 'Social Celebrations',
-			desc: 'Baby showers, milestone birthdays, engagements — every occasion deserves to be extraordinary.',
+			desc: 'Baby showers, milestone birthdays, engagements - every occasion deserves to be extraordinary.',
 			img: '/imgs/649103981_18105190270867471_356966879460120322_n.jpg',
 			href: '/events/social-celebrations'
 		},
 		{
 			num: '04',
 			title: 'Special Occasions',
-			desc: 'Cultural ceremonies, anniversaries, private dinners — crafted with reverence and elegance.',
+			desc: 'Cultural ceremonies, anniversaries, private dinners - crafted with reverence and elegance.',
 			img: '/imgs/654696516_18336535564300447_6008051749444092425_n.jpg',
 			href: '/events/special-occasions'
 		}
@@ -40,16 +40,17 @@
 			Every Chapter of<br /><em>Your Celebration</em>
 		</h2>
 	</div>
+
 	<div class="cards">
-		{#each services as svc, i}
-			<a href={svc.href} class="card fade-up delay-{i + 1}">
+		{#each services as svc}
+			<a href={svc.href} class="card">
 				<img src={svc.img} alt={svc.title} class="card-img" />
 				<div class="card-overlay"></div>
 				<div class="card-content">
 					<span class="card-num">{svc.num}</span>
 					<h3 class="card-title">{svc.title}</h3>
 					<p class="card-desc">{svc.desc}</p>
-					<span class="card-arrow">⟶</span>
+					<span class="card-arrow">-></span>
 				</div>
 			</a>
 		{/each}
@@ -61,11 +62,12 @@
 	.explore {
 		background: var(--dark-card);
 		padding: 80px 48px 0;
+		overflow: hidden;
 	}
 	.explore-header {
 		text-align: center;
 		max-width: 700px;
-		margin: 0 auto 48px;
+		margin: 0 auto 42px;
 	}
 	.explore-title {
 		font-family: var(--font-heading);
@@ -85,6 +87,10 @@
 		gap: 16px;
 		max-width: 1300px;
 		margin: 0 auto;
+		clip-path: inset(0 0 0 0);
+		filter: brightness(1) blur(0);
+		transform: translateZ(0);
+		will-change: clip-path, filter;
 	}
 	.card {
 		position: relative;
@@ -109,11 +115,11 @@
 	.card-overlay {
 		position: absolute;
 		inset: 0;
-		background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.1) 60%);
+		background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.1) 60%);
 		transition: background 0.4s;
 	}
 	.card:hover .card-overlay {
-		background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.2) 60%);
+		background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.2) 60%);
 	}
 	.card-content {
 		position: relative;
@@ -147,7 +153,9 @@
 		opacity: 0;
 		max-height: 0;
 		overflow: hidden;
-		transition: opacity 0.4s, max-height 0.4s;
+		transition:
+			opacity 0.4s,
+			max-height 0.4s;
 	}
 	.card:hover .card-desc {
 		opacity: 1;
@@ -165,10 +173,16 @@
 	}
 
 	@media (max-width: 900px) {
-		.explore { padding: 60px 20px 0; }
-		.cards { grid-template-columns: repeat(2, 1fr); }
+		.explore {
+			padding: 60px 20px 0;
+		}
+		.cards {
+			grid-template-columns: repeat(2, 1fr);
+		}
 	}
 	@media (max-width: 500px) {
-		.cards { grid-template-columns: 1fr; }
+		.cards {
+			grid-template-columns: 1fr;
+		}
 	}
 </style>
