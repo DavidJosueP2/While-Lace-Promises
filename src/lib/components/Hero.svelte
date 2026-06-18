@@ -6,6 +6,9 @@
 	<div class="hero-watermark">PROMISES</div>
 	<div class="hero-inner">
 		<div class="hero-content">
+			<div class="hero-brand fade-up">
+				<img src="/imgs/logo-removebg.png" alt="White Lace & Promises" />
+			</div>
 			<p class="hero-kicker fade-up">WEDDING & EVENT STYLING</p>
 			<h1 class="hero-title fade-up delay-1">
 				Designed with Grace,<br />Styled with <em>Heart</em>
@@ -43,14 +46,14 @@
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
-		filter: grayscale(100%) brightness(0.68) contrast(1.08);
+		filter: grayscale(100%) brightness(0.78) contrast(1.02);
 	}
 	.hero-overlay {
 		position: absolute;
 		inset: 0;
 		background:
-			linear-gradient(to right, rgba(10, 10, 10, 0.9) 0%, rgba(10, 10, 10, 0.56) 42%, rgba(10, 10, 10, 0.18) 100%),
-			linear-gradient(to top, rgba(10, 10, 10, 0.86) 0%, rgba(10, 10, 10, 0.18) 48%, rgba(10, 10, 10, 0.36) 100%);
+			linear-gradient(to right, rgba(10, 10, 10, 0.78) 0%, rgba(10, 10, 10, 0.42) 42%, rgba(10, 10, 10, 0.14) 100%),
+			linear-gradient(to top, rgba(10, 10, 10, 0.78) 0%, rgba(10, 10, 10, 0.14) 50%, rgba(10, 10, 10, 0.25) 100%);
 	}
 	.hero-watermark {
 		position: absolute;
@@ -58,11 +61,11 @@
 		bottom: 5vh;
 		z-index: 1;
 		font-family: var(--font-heading);
-		font-size: clamp(6rem, 16vw, 15rem);
+		font-size: clamp(5rem, 14vw, 13rem);
 		font-weight: 300;
 		line-height: 0.8;
 		letter-spacing: 0.04em;
-		color: rgba(245, 245, 240, 0.055);
+		color: rgba(245, 245, 240, 0.028);
 		pointer-events: none;
 		white-space: nowrap;
 	}
@@ -76,63 +79,79 @@
 		height: 100%;
 		max-width: 1400px;
 		margin: 0 auto;
-		padding: 140px 64px 46px;
+		padding: 140px 64px 44px;
 	}
 	.hero-content {
-		max-width: 700px;
+		max-width: 650px;
+	}
+	.hero-brand {
+		width: 112px;
+		height: 64px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		margin-bottom: 18px;
+		opacity: 0.82;
+		pointer-events: none;
+	}
+	.hero-brand img {
+		width: 100%;
+		height: 100%;
+		object-fit: contain;
+		filter: invert(1) grayscale(1) contrast(1.08) drop-shadow(0 10px 28px rgba(0, 0, 0, 0.42));
 	}
 	.hero-kicker {
 		font-family: var(--font-body);
-		font-size: 0.68rem;
+		font-size: 0.64rem;
 		font-weight: 500;
 		letter-spacing: 0.34em;
 		color: var(--gold);
 	}
 	.hero-title {
 		font-family: var(--font-heading);
-		font-size: clamp(3.25rem, 6.4vw, 5.8rem);
+		font-size: clamp(3rem, 5.3vw, 4.85rem);
 		font-weight: 300;
-		line-height: 0.98;
+		line-height: 1.04;
 		color: var(--off-white);
-		margin-top: 18px;
+		margin-top: 16px;
 	}
 	.hero-title em {
 		font-style: italic;
 		color: var(--gold);
 	}
 	.hero-rule {
-		width: min(40vw, 360px);
+		width: min(34vw, 300px);
 		height: 1px;
-		margin: 24px 0 22px;
+		margin: 20px 0 20px;
 		background: linear-gradient(to right, var(--gold), rgba(201, 163, 71, 0.1), transparent);
 	}
 	.hero-sub {
 		font-family: var(--font-body);
-		font-size: 0.82rem;
+		font-size: 0.8rem;
 		font-weight: 300;
 		line-height: 1.8;
 		color: var(--light-grey);
-		max-width: 590px;
+		max-width: 560px;
 	}
 	.hero-btns {
 		display: flex;
 		gap: 16px;
-		margin-top: 28px;
+		margin-top: 24px;
 		flex-wrap: wrap;
 	}
 	.hero-details {
 		display: flex;
 		align-items: center;
 		gap: 18px;
-		margin-top: 42px;
-		padding-top: 18px;
-		border-top: 1px solid rgba(245, 245, 240, 0.16);
+		margin-top: 34px;
+		padding-top: 16px;
+		border-top: 1px solid rgba(245, 245, 240, 0.1);
 		font-family: var(--font-body);
 		font-size: 0.62rem;
 		font-weight: 500;
 		letter-spacing: 0.24em;
 		text-transform: uppercase;
-		color: rgba(245, 245, 240, 0.72);
+		color: rgba(245, 245, 240, 0.58);
 	}
 	.hero-details span + span {
 		position: relative;
@@ -154,7 +173,7 @@
 		font-size: 0.65rem;
 		font-weight: 500;
 		letter-spacing: 0.2em;
-		padding: 14px 32px;
+		padding: 13px 30px;
 		transition: all 0.3s ease;
 		cursor: pointer;
 		text-decoration: none;
@@ -191,7 +210,12 @@
 			font-size: clamp(5rem, 22vw, 8rem);
 		}
 		.hero-title {
-			font-size: clamp(3rem, 13vw, 4.4rem);
+			font-size: clamp(2.75rem, 12vw, 4rem);
+		}
+		.hero-brand {
+			width: 96px;
+			height: 56px;
+			margin-bottom: 14px;
 		}
 		.hero-rule {
 			width: 82%;

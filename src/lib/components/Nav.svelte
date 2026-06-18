@@ -19,7 +19,10 @@
 			<a href="/about" class="nav-link">ABOUT</a>
 			<a href="/events" class="nav-link">EVENTS</a>
 		</div>
-		<a href="/" class="nav-logo">WHITE LACE & PROMISES</a>
+		<a href="/" class="nav-logo" aria-label="White Lace & Promises home">
+			<img src="/imgs/logo-removebg.png" alt="" aria-hidden="true" />
+			<span>WHITE LACE & PROMISES</span>
+		</a>
 		<div class="nav-right">
 			<a href="/gallery" class="nav-link">GALLERY</a>
 			<a href="/enquiry" class="nav-enquire">ENQUIRE</a>
@@ -92,6 +95,11 @@
 		color: var(--gold);
 	}
 	.nav-logo {
+		position: relative;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		min-width: 250px;
 		font-family: var(--font-body);
 		font-size: 0.75rem;
 		font-weight: 400;
@@ -99,6 +107,27 @@
 		color: var(--gold);
 		white-space: nowrap;
 		text-align: center;
+		transition: color 0.3s ease;
+	}
+	.nav-logo:hover {
+		color: var(--gold-hover);
+	}
+	.nav-logo span {
+		position: relative;
+		z-index: 2;
+	}
+	.nav-logo img {
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		z-index: 1;
+		width: 92px;
+		height: 46px;
+		object-fit: contain;
+		opacity: 0.18;
+		filter: invert(1) grayscale(1);
+		transform: translate(-50%, -50%);
+		pointer-events: none;
 	}
 	.nav-enquire {
 		font-family: var(--font-body);
@@ -200,8 +229,13 @@
 			display: flex;
 		}
 		.nav-logo {
+			min-width: auto;
 			font-size: 0.6rem;
 			letter-spacing: 0.25em;
+		}
+		.nav-logo img {
+			width: 72px;
+			height: 36px;
 		}
 	}
 </style>
