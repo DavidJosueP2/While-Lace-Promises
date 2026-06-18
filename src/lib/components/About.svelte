@@ -63,19 +63,21 @@
 		background:
 			linear-gradient(135deg, rgba(20, 20, 20, 0.98), rgba(10, 10, 10, 1)),
 			var(--black);
-		padding: 118px 48px 130px;
+		padding: 118px 48px 86px;
 		overflow: hidden;
 	}
 	.about::before {
-		content: 'WHITE LACE';
+		content: 'WHITE LACE & PROMISES';
 		position: absolute;
-		left: 46%;
-		bottom: -0.2em;
+		left: 50%;
+		bottom: -0.18em;
 		font-family: var(--font-heading);
-		font-size: clamp(5rem, 13vw, 12rem);
+		font-size: clamp(2.8rem, 6.4vw, 6.4rem);
 		font-weight: 300;
 		line-height: 1;
-		color: rgba(245, 245, 240, 0.035);
+		letter-spacing: 0.015em;
+		color: rgba(245, 245, 240, 0.075);
+		transform: translateX(-50%);
 		pointer-events: none;
 		white-space: nowrap;
 	}
@@ -228,7 +230,7 @@
 
 	@media (max-width: 980px) {
 		.about {
-			padding: 86px 28px 100px;
+			padding: 86px 28px 76px;
 		}
 		.about-editorial {
 			grid-template-columns: 1fr;
@@ -243,7 +245,11 @@
 	}
 	@media (max-width: 700px) {
 		.about {
-			padding: 72px 20px 84px;
+			padding: 72px 20px 62px;
+		}
+		.about::before {
+			font-size: clamp(2rem, 10vw, 3.2rem);
+			bottom: -0.13em;
 		}
 		.about-shell {
 			grid-template-columns: 1fr;
