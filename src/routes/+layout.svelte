@@ -7,12 +7,12 @@
 
 <svelte:head>
 	<link rel="icon" href={favicon} />
-	<title>White Lace & Promises — Australian Wedding & Event Styling</title>
+	<title>White Lace & Promises - Wedding & Event Styling</title>
 	<meta
 		name="description"
-		content="White Lace & Promises is an Australian wedding and event styling studio creating elegant celebrations with planning, consulting, design and execution."
+		content="White Lace & Promises is a wedding and event styling studio creating elegant celebrations with planning, consulting, design and execution."
 	/>
-	<meta property="og:title" content="White Lace & Promises — Australian Wedding & Event Styling" />
+	<meta property="og:title" content="White Lace & Promises - Wedding & Event Styling" />
 	<meta
 		property="og:description"
 		content="Where your story becomes something timeless. Weddings, corporate galas and celebrations styled with meticulous attention to every detail."
